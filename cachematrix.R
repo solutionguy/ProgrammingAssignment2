@@ -47,22 +47,22 @@ cacheSolve <- function(x, ...) {
   
   # if inverse object is already there, check if already cached
   # if yes, return cached inverse
-  if(!is.null(inv)) {
+  if(!is.null(invm)) {
     message("Getting the cached Matrix...")
-    return(inv)
+    return(invm)
   }
   
   # Else Get otriginal matrix 
   data <- x$get()
   
   # Compute inverse of the above matrix
-  inv <- solve(data, ...)
+  invm <- solve(data, ...)
   
   # cache inverse of matrix
-  x$setinverse(inv)
+  x$setinverse(invm)
   
   # return inverse
-  inv
+  invm
 
 }
 
