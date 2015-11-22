@@ -7,17 +7,33 @@ library(Matrix)
 ## Write a short comment describing this function
 
 makeCacheMatrix <- function(x = matrix()) {
- m <- NULL
-        set <- function(y) {
-                x <<- y
-                m <<- NULL
-        }
-        get <- function() x
-        setinverse <- function(inverse) m <<- inverse
-        getinverse <- function() m
-        list(set = set, get = get,
-             setinverse = setinverse,
-             getinverse = getinverse)
+
+  invm <- NULL
+  
+  # set value of the matrix (The setter function, persists the original matrix into environment 'x' )
+  set <- function(y) 
+  {
+    x <<- y    # Persist into environment 'x'
+    
+    invm <<- NULL # matrix invalidated, reassign NULL into it
+  }
+  
+  # Get value of matrix (The original matrix)
+  get <- function() x
+  
+  
+  # Set inverse of matrix (The computed inverse of matrix x)
+  setinverse <- function(inverse) invm <<- inverse
+  
+  
+  # Get inverse of matrix (Return the value of invm)
+  getinverse <- function() invm
+  
+  # Return a list containing all functions defined above (The getter & setter methods)
+  list(set = set, get = get,
+       setinverse = setinverse,
+       getinverse = getinverse)
+
 }
 
 
